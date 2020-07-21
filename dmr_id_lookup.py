@@ -10,23 +10,8 @@ from sys import exit
 def lookup_id(id):
     '''Returns the first name and callsign of the given user ID if it exists.'''
 
-    '''
-    I'm leaving this commented out because the API returns an empty list whether
-    the ID is valid or not. Perhaps there are special IDs which are shorter or longer than
-    seven characters?
-
-    Validate the ID input.
-    User IDs should be 7 digits as specified in https://www.dmr-marc.net/FAQ/GSM-ID.html
-    try:
-        int(id)
-        if (len(id) != 7):
-            print("Invalid ID given!")
-            return None
-    except ValueError:
-        return None
-    '''
     # More information at: https://www.radioid.net/api
-    query = 'https://www.radioid.net/api/dmr/user/?id=' + id
+    query = 'https://database.radioid.net/api/dmr/user/?id=' + id
     response = load(urlopen(query))
     if(response['count'] == 0):
         # No records stored for queried ID
